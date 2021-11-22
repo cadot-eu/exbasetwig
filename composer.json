@@ -1,0 +1,38 @@
+{
+  "name": "cadot.info/Twigbundle",
+  "description": "add tools Twig for Symfony 5",
+  "type": "library",
+  "require": {
+    "php": ">=7.2.5"
+  },
+  "homepage": "https://github.com/cadot-info/twigbundle#readme",
+  "keywords": [
+    "symfony",
+    "move",
+    "copy",
+    "remove",
+    "delete",
+    "sanitize",
+    "spaces",
+    "clean",
+    "extension",
+    "file",
+    "bundle",
+    "service",
+    "string",
+    "cadot.info"
+  ],
+  "license": "mit",
+  "autoload": {
+    "psr-4": {
+      "Cadotinfo\\TwigBundle\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "cadot.info",
+      "email": "composer@cadot.info"
+    }
+  ],
+  "minimum-stability": "dev"
+}
