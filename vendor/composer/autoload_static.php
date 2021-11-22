@@ -77,10 +77,6 @@ class ComposerStaticInitf0b18b6b8e977a2411adafec57f445bb
             'Psr\\Cache\\' => 10,
             'PackageVersions\\' => 16,
         ),
-        'M' => 
-        array (
-            'Masterminds\\' => 12,
-        ),
         'L' => 
         array (
             'Liip\\ImagineBundle\\' => 19,
@@ -91,7 +87,6 @@ class ComposerStaticInitf0b18b6b8e977a2411adafec57f445bb
         ),
         'D' => 
         array (
-            'Durlecode\\EJSParser\\' => 20,
             'Doctrine\\Persistence\\' => 21,
             'Doctrine\\ORM\\' => 13,
             'Doctrine\\Instantiator\\' => 22,
@@ -297,10 +292,6 @@ class ComposerStaticInitf0b18b6b8e977a2411adafec57f445bb
         array (
             0 => __DIR__ . '/..' . '/composer/package-versions-deprecated/src/PackageVersions',
         ),
-        'Masterminds\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/masterminds/html5/src',
-        ),
         'Liip\\ImagineBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/liip/imagine-bundle',
@@ -308,10 +299,6 @@ class ComposerStaticInitf0b18b6b8e977a2411adafec57f445bb
         'Imagine\\' => 
         array (
             0 => __DIR__ . '/..' . '/imagine/imagine/src',
-        ),
-        'Durlecode\\EJSParser\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/durlecode/editorjs-simple-html-parser/src',
         ),
         'Doctrine\\Persistence\\' => 
         array (

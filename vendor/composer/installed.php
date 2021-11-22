@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'bf7dcc5f03c1e1425b4312e4a45a0db5d6c35abd',
+        'reference' => '3dedca9af7eee1c7d6966cb7e7cf062fdd6a6537',
         'name' => 'cadot.info/twigbundle',
         'dev' => true,
     ),
@@ -38,7 +38,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'bf7dcc5f03c1e1425b4312e4a45a0db5d6c35abd',
+            'reference' => '3dedca9af7eee1c7d6966cb7e7cf062fdd6a6537',
             'dev_requirement' => false,
         ),
         'composer/package-versions-deprecated' => array(
@@ -160,17 +160,6 @@
             'reference' => 'd22ea9208fa44137f887ba55ce867233a5666250',
             'dev_requirement' => false,
         ),
-        'durlecode/editorjs-simple-html-parser' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../durlecode/editorjs-simple-html-parser',
-            'aliases' => array(
-                0 => '9999999-dev',
-            ),
-            'reference' => 'e3063a02d6f88f6863b4edaab09b42a43ae5a618',
-            'dev_requirement' => false,
-        ),
         'imagine/imagine' => array(
             'pretty_version' => '1.2.4',
             'version' => '1.2.4.0',
@@ -187,17 +176,6 @@
             'install_path' => __DIR__ . '/../liip/imagine-bundle',
             'aliases' => array(),
             'reference' => 'afa4193c7fde027426ebb19e73878cd026438bbd',
-            'dev_requirement' => false,
-        ),
-        'masterminds/html5' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../masterminds/html5',
-            'aliases' => array(
-                0 => '2.7.x-dev',
-            ),
-            'reference' => 'f640ac1bdddff06ea333a920c95bbad8872429ab',
             'dev_requirement' => false,
         ),
         'ocramius/package-versions' => array(

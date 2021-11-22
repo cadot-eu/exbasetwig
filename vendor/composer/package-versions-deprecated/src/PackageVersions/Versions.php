@@ -48,10 +48,8 @@ final class Versions
   'doctrine/lexer' => '1.3.x-dev@59bfb3b9be04237be4cd1afea9bbb58794c25ce8',
   'doctrine/orm' => '2.9.0@99d67cb77d3626c52f4d5feb5caed58948ea5577',
   'doctrine/persistence' => '2.3.x-dev@d22ea9208fa44137f887ba55ce867233a5666250',
-  'durlecode/editorjs-simple-html-parser' => 'dev-master@e3063a02d6f88f6863b4edaab09b42a43ae5a618',
   'imagine/imagine' => '1.2.4@d2e18be6e930ca169e4f921ef73ebfc061bf55d8',
   'liip/imagine-bundle' => '2.6.0@afa4193c7fde027426ebb19e73878cd026438bbd',
-  'masterminds/html5' => 'dev-master@f640ac1bdddff06ea333a920c95bbad8872429ab',
   'psr/cache' => '1.0.1@d11b50ad223250cf17b86e38383413f5a6764bf8',
   'psr/container' => '1.x-dev@513e0666f7216c7459170d56df27dfcefe1689ea',
   'psr/event-dispatcher' => 'dev-master@aa4f89e91c423b516ff226c50dc83f824011c253',
@@ -98,7 +96,7 @@ final class Versions
   'symfony/var-dumper' => '5.4.x-dev@8dcd0b137b3fb45df7df6f06f0ef6a9fad7f587d',
   'symfony/var-exporter' => '5.4.x-dev@d59446d6166b1643a8a3c30c2fa8e16e51cdbde7',
   'twig/twig' => 'v3.0.0@9b58bb8ac7a41d72fbb5a7dc643e07923e5ccc26',
-  'cadot.info/twigbundle' => 'dev-master@bf7dcc5f03c1e1425b4312e4a45a0db5d6c35abd',
+  'cadot.info/twigbundle' => 'dev-master@3dedca9af7eee1c7d6966cb7e7cf062fdd6a6537',
 );
 
     private function __construct()
