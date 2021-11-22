@@ -9,9 +9,7 @@
     "symfony/security-bundle": ">=5.2",
     "symfony/asset": ">=5.2",
     "doctrine/orm": ">=2.9",
-    "liip/imagine-bundle": ">=2.6",
-    "cadot.info/entitybundle": "dev-master",
-    "cadot.info/filebundle": "dev-master"
+    "liip/imagine-bundle": ">=2.6"
   },
   "homepage": "https://github.com/cadot-info/twigbundle#readme",
   "keywords": [
