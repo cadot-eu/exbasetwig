@@ -1,22 +1,17 @@
 <?php
 
-namespace App\CMTwig;
+namespace Cadotinfo\TwigBundle\Twig;
 
 use Twig\TwigFilter;
 use Twig\TwigFunction;
-use App\CMService\FunctionEntitie;
 use Twig\Extension\AbstractExtension;
 use Doctrine\ORM\EntityManagerInterface;
+use Cadotinfo\EntityBundle\reorder;
 
 class ReorderExtension extends AbstractExtension
 {
     protected $em, $fe;
 
-    public function __construct(EntityManagerInterface $em, FunctionEntitie $fe)
-    {
-        $this->em = $em;
-        $this->fe = $fe;
-    }
 
     public function getFunctions(): array
     {
@@ -27,6 +22,6 @@ class ReorderExtension extends AbstractExtension
 
     public function reorder($repository, $donnees = '')
     {
-        return $this->fe->reorder($repository, $donnees);
+        return $this->reorder($repository, $donnees);
     }
 }

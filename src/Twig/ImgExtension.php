@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CMTwig;
+namespace Cadotinfo\TwigBundle\Twig;
 
 use DOMDocument;
 use Twig\TwigFilter;
@@ -9,6 +9,7 @@ use ImalH\PDFLib\PDFLib;
 use Symfony\Component\Asset\Packages;
 use Twig\Extension\AbstractExtension;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 class ImgExtension extends AbstractExtension
 {

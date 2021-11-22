@@ -1,0 +1,16 @@
+version: '3'
+services:
+  CMTwig:
+    image: cadotinfo/symfony5
+    container_name: CMTwig
+    volumes:
+      - .:/app
+    networks:
+      - web
+    restart: always
+    ports:
+      - 80
+ 
+networks:
+  web:
+    external: true

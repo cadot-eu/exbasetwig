@@ -1,0 +1,30 @@
+{
+    "name": "cadot.info/filebundle",
+    "description": "Functions on files for Symfony 5",
+    "type": "library",
+    "require": {
+      "php": ">=7.2.5"
+     
+  }
+  ,
+  "homepage": "https://github.com/cadot-info/tools#readme",
+      "keywords": [
+        "symfony","move","copy","remove","delete","sanitize","spaces","clean","extension","file","bundle","service","cadot.info"
+        
+      ],
+    "license": "proprietary",
+    "autoload": {
+      "psr-4": {
+        "Cadotinfo\\FileBundle\\": "src/"
+      }
+    },
+    "authors": [
+      {
+        "name": "cadot.info",
+        "email": "composer@cadot.info"
+      }
+    ],
+  
+    "minimum-stability": "dev"
+  }
+  

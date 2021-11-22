@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CMTwig;
+namespace Cadotinfo\TwigBundle\Twig;
 
 use DOMDocument;
 use Twig\TwigFunction;

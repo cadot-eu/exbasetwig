@@ -1,19 +1,16 @@
 <?php
 
-namespace App\CMTwig;
+namespace Cadotinfo\TwigBundle\Twig;
 
 use Twig\TwigFilter;
-use App\CMService\FileFunctions;
 use Twig\Extension\AbstractExtension;
+use cadotinfo\filebundle\sanitize;
 
 class StringExtension extends AbstractExtension
 {
     protected $FileFunctions;
 
-    public function __construct(FileFunctions $FileFunctions)
-    {
-        $this->FileFunctions = $FileFunctions;
-    }
+
 
     public function getFilters(): array
     {
@@ -25,6 +22,6 @@ class StringExtension extends AbstractExtension
 
     public function sanitize($value)
     {
-        return $this->FileFunctions->sanitize($value);
+        return $this->sanitize($value);
     }
 }

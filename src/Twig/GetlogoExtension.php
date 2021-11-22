@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CMTwig;
+namespace Cadotinfo\TwigBundle\Twig;
 
 use Symfony\Component\Asset\Packages;
 use Twig\Extension\AbstractExtension;

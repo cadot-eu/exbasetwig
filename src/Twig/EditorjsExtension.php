@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CMTwig;
+namespace Cadotinfo\TwigBundle\Twig;
 
 use Twig\TwigFunction;
 use Durlecode\EJSParser\Parser;

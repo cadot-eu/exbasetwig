@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CMTwig;
+namespace Cadotinfo\TwigBundle\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;

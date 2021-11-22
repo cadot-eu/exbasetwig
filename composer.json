@@ -1,9 +1,18 @@
 {
-  "name": "cadot.info/Twigbundle",
+  "name": "cadot.info/twigbundle",
   "description": "add tools Twig for Symfony 5",
   "type": "library",
   "require": {
-    "php": ">=7.2.5"
+    "php": ">=7.2.5",
+    "symfony/framework-bundle": ">=5.1",
+    "twig/twig": ">=3.0",
+    "symfony/security-bundle": ">=5.2",
+    "durlecode/editorjs-simple-html-parser": "dev-master",
+    "symfony/asset": ">=5.2",
+    "doctrine/orm": ">=2.9",
+    "liip/imagine-bundle": ">=2.6",
+    "cadot.info/entitybundle": "dev-master",
+    "cadot.info/filebundle": "dev-master"
   },
   "homepage": "https://github.com/cadot-info/twigbundle#readme",
   "keywords": [
