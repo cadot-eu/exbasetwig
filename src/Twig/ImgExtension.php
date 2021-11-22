@@ -56,7 +56,7 @@ class ImgExtension extends AbstractExtension
         $return .= 'data-toggle="tooltip" data-placement="top" title="' . $tooltip . '"';
         return $return . ' />';
     }
-    // renvoie une image en mini de A00px de large par défaut
+    // renvoie une image en mini de 100px de large par défaut
     //modal permet de cliquer sur l'image pour avoir un apercu en grand
     // possibilité de donner des tailles par exemple:height:100px
     // on peux donner des classes et des styles
