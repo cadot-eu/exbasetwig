@@ -128,9 +128,15 @@ implementation of function Repository
 
 ## UuploadMaxExtension
 
-`{{{{upload_max()}}}}
+`{{upload_max()}}`
 Return size maxi of upload mini from server or php
 
 ## View
 
 `{{voir(image or file)}}` return a base64 of image or file pdf
+
+## Json
+
+show a json so nicely
+
+`{{jsonpretty(json)|raw}}`
