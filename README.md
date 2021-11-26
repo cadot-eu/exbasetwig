@@ -1,6 +1,6 @@
 # Twig extensions
 
-install by
+install by composer
 
 `composer require cadot.info/twigbundle`
 
