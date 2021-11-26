@@ -491,9 +491,9 @@ class AllExtension extends AbstractExtension
     /* -------------------------------------------------------------------------- */
     /*                               other functions                              */
     /* -------------------------------------------------------------------------- */
-    public function actions()
+    public function url(Twig_Environment $twig)
     {
-        return new \Twig\Markup(Parser::parse("{% set route =
+        return $twig->render("{% set route =
             path(
               app.request.attributes.get('_route'),
               app.request.attributes.get('_route_params')
@@ -506,6 +506,6 @@ class AllExtension extends AbstractExtension
             )
               | split('/')
               | last
-          %}")->toHtml(), 'UTF-8');
+          %}");
     }
 }
