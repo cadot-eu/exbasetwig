@@ -24,37 +24,37 @@ class DateExtension extends AbstractExtension
     {
         return [
             /* ------------------------- functions editeur tmce ------------------------- */
-            new TwigFunction('TW-tmcerender', [$this, 'tmcerender', ['is_safe' => ['html']]]),
-            new TwigFunction('TW-tmcefirstImage', [$this, 'tmcefirstImage', ['is_safe' => ['html']]]),
-            new TwigFunction('TW-tmcefirstHeader', [$this, 'tmcefirstHeader', ['is_safe' => ['html']]]),
-            new TwigFunction('TW-tmcefirstText', [$this, 'tmcefirstText', ['is_safe' => ['html']]]),
+            new TwigFunction('TBtmcerender', [$this, 'tmcerender', ['is_safe' => ['html']]]),
+            new TwigFunction('TBtmcefirstImage', [$this, 'tmcefirstImage', ['is_safe' => ['html']]]),
+            new TwigFunction('TBtmcefirstHeader', [$this, 'tmcefirstHeader', ['is_safe' => ['html']]]),
+            new TwigFunction('TBtmcefirstText', [$this, 'tmcefirstText', ['is_safe' => ['html']]]),
             /* ----------------------- ancien créateur de template ---------------------- */
-            new TwigFunction('TW-formrow', [$this, 'formrow'], ['is_safe' => ['html']]),
-            new TwigFunction('TW-formcol', [$this, 'formcol'], ['is_safe' => ['html']]),
-            new TwigFunction('TW-formend', [$this, 'formend'], ['is_safe' => ['html']]),
+            new TwigFunction('TBformrow', [$this, 'formrow'], ['is_safe' => ['html']]),
+            new TwigFunction('TBformcol', [$this, 'formcol'], ['is_safe' => ['html']]),
+            new TwigFunction('TBformend', [$this, 'formend'], ['is_safe' => ['html']]),
             /* ---------------- inplementation de functions du repository --------------- */
-            new TwigFunction('TW-findall', [$this, 'findall']),
-            new TwigFunction('TW-find', [$this, 'find']),
-            new TwigFunction('TW-findOneBy', [$this, 'findOneBy']),
-            new TwigFunction('TW-findBy', [$this, 'findBy']),
+            new TwigFunction('TBfindall', [$this, 'findall']),
+            new TwigFunction('TBfind', [$this, 'find']),
+            new TwigFunction('TBfindOneBy', [$this, 'findOneBy']),
+            new TwigFunction('TBfindBy', [$this, 'findBy']),
             /* --------------------- implementation de functions php -------------------- */
-            new TwigFunction('TW-reorder', [$this, 'reorder']),
-            new TwigFunction('TW-dd', [$this, 'dd']),
-            new TwigFunction('TW-getenv', [$this, 'getenv']),
+            new TwigFunction('TBreorder', [$this, 'reorder']),
+            new TwigFunction('TBdd', [$this, 'dd']),
+            new TwigFunction('TBgetenv', [$this, 'getenv']),
             /* -------------------------- functions d'affichage ------------------------- */
-            new TwigFilter('TW-sanitize', [$this, 'sanitize']),
-            new TwigFilter('TW-objetProperties', [$this, 'objetProperties']),
-            new TwigFilter('TW-txtfromhtml', [$this, 'txtfromhtml']),
-            new TwigFilter('TW-JsonPretty', [$this, 'jsonpretty', ['is_safe' => ['html']]]),
-            new TwigFunction('TW-datefr', [$this, 'datefr']),
-            new TwigFunction('TW-img', [$this, 'img'], ['is_safe' => ['html']]),
-            new TwigFunction('TW-thumbnail', [$this, 'thumbnail'], ['is_safe' => ['html']]),
-            new TwigFunction('TW-getico', [$this, 'getico', ['is_safe' => ['html']]]),
+            new TwigFilter('TBsanitize', [$this, 'sanitize']),
+            new TwigFilter('TBobjetProperties', [$this, 'objetProperties']),
+            new TwigFilter('TBtxtfromhtml', [$this, 'txtfromhtml']),
+            new TwigFilter('TBJsonPretty', [$this, 'jsonpretty', ['is_safe' => ['html']]]),
+            new TwigFunction('TBdatefr', [$this, 'datefr']),
+            new TwigFunction('TBimg', [$this, 'img'], ['is_safe' => ['html']]),
+            new TwigFunction('TBthumbnail', [$this, 'thumbnail'], ['is_safe' => ['html']]),
+            new TwigFunction('TBgetico', [$this, 'getico', ['is_safe' => ['html']]]),
             /* -------------------------- functions editeur ejs ------------------------- */
-            new TwigFunction('TW-ejsrender', [$this, 'ejsrender', ['is_safe' => ['html']]]),
-            new TwigFunction('TW-ejsfirstImage', [$this, 'ejsfirstImage', ['is_safe' => ['html']]]),
-            new TwigFunction('TW-ejsfirstHeader', [$this, 'ejsfirstHeader', ['is_safe' => ['html']]]),
-            new TwigFunction('TW-ejsfirstText', [$this, 'ejsfirstText', ['is_safe' => ['html']]]),
+            new TwigFunction('TBejsrender', [$this, 'ejsrender', ['is_safe' => ['html']]]),
+            new TwigFunction('TBejsfirstImage', [$this, 'ejsfirstImage', ['is_safe' => ['html']]]),
+            new TwigFunction('TBejsfirstHeader', [$this, 'ejsfirstHeader', ['is_safe' => ['html']]]),
+            new TwigFunction('TBejsfirstText', [$this, 'ejsfirstText', ['is_safe' => ['html']]]),
             /* ----------------------------- sous-fonctions ----------------------------- */
 
 
