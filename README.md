@@ -1,4 +1,4 @@
-# Twig extensions cadot.info
+# Twig extensions
 
 install by composer
 
