@@ -63,3 +63,9 @@ verify in bundles.php the line
 | TBejsfirstImage  | json                       | return first image from json  |
 | TBejsfirstHeader | json                       | return first header from json |
 | TBejsfirstText   | json                       | return first test from json   |
+
+## Other functions
+
+| twig function | parameters | description                            |
+| ------------- | ---------- | -------------------------------------- |
+| TBactions     |            | return actions for read action and url |

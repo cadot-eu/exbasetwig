@@ -56,8 +56,8 @@ class AllExtension extends AbstractExtension
             new TwigFunction('TBejsfirstImage', [$this, 'ejsfirstImage', ['is_safe' => ['html']]]),
             new TwigFunction('TBejsfirstHeader', [$this, 'ejsfirstHeader', ['is_safe' => ['html']]]),
             new TwigFunction('TBejsfirstText', [$this, 'ejsfirstText', ['is_safe' => ['html']]]),
-            /* ----------------------------- sous-fonctions ----------------------------- */
-
+            /* ----------------------------- other-fonctions ----------------------------- */
+            new TwigFunction('TBactions', [$this, 'actions', ['is_safe' => ['html']]])
 
 
 
@@ -487,9 +487,13 @@ class AllExtension extends AbstractExtension
         }
         return $ret;
     }
-    public function url()
+
+    /* -------------------------------------------------------------------------- */
+    /*                               other functions                              */
+    /* -------------------------------------------------------------------------- */
+    public function actions()
     {
-        return ("{% set route =
+        return new \Twig\Markup(Parser::parse("{% set route =
             path(
               app.request.attributes.get('_route'),
               app.request.attributes.get('_route_params')
@@ -502,6 +506,6 @@ class AllExtension extends AbstractExtension
             )
               | split('/')
               | last
-          %}");
+          %}")->toHtml(), 'UTF-8');
     }
 }
