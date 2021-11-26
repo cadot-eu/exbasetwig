@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class DateExtension extends AbstractExtension
+class AllExtension extends AbstractExtension
 {
     private $roles, $container;
     public function __construct(Security $security, ContainerInterface $container)
