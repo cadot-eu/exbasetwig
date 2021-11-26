@@ -53,6 +53,7 @@ verify in bundles.php the line
 | TBimg             | $image, $size = '', $class = '', $style = '', $tooltip = ''                | return img tag with many size with liip and lazy          |
 | TBthumbnail       | $image, $modal = true, $tooltip = '', $size = '', $class = '', $style = '' | retunr a tag imag with link and modal preview possibility |
 | TBgetico          | $file, $taille = 32                                                        | return a ico from file                                    |
+| TBuploadmax       |                                                                            | return the lowest file upload from php and server         |
 
 ## functions editeur ejs
 

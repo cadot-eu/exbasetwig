@@ -50,6 +50,7 @@ class AllExtension extends AbstractExtension
             new TwigFunction('TBimg', [$this, 'img'], ['is_safe' => ['html']]),
             new TwigFunction('TBthumbnail', [$this, 'thumbnail'], ['is_safe' => ['html']]),
             new TwigFunction('TBgetico', [$this, 'getico', ['is_safe' => ['html']]]),
+            new TwigFunction('TBuploadmax', [$this, 'max', ['is_safe' => ['html']]]),
             /* -------------------------- functions editeur ejs ------------------------- */
             new TwigFunction('TBejsrender', [$this, 'ejsrender', ['is_safe' => ['html']]]),
             new TwigFunction('TBejsfirstImage', [$this, 'ejsfirstImage', ['is_safe' => ['html']]]),
@@ -183,6 +184,13 @@ class AllExtension extends AbstractExtension
     /* -------------------------------------------------------------------------- */
     /*                            functions d'affichage                           */
     /* -------------------------------------------------------------------------- */
+    public function max()
+    {
+        $max_upload = (int)(ini_get('upload_max_filesize'));
+        $max_post = (int)(ini_get('post_max_size'));
+        $memory_limit = (int)(ini_get('memory_limit'));
+        return (min($max_upload, $max_post, $memory_limit));
+    }
     public function sanitize($value)
     {
         return $this->sanitize($value);
