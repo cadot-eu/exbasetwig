@@ -1,4 +1,4 @@
-# Twig extensions *
+# Twig extensions
 
 install by composer
 
