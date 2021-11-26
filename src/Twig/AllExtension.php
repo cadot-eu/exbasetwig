@@ -491,7 +491,7 @@ class AllExtension extends AbstractExtension
     /* -------------------------------------------------------------------------- */
     /*                               other functions                              */
     /* -------------------------------------------------------------------------- */
-    public function url(Twig_Environment $twig,)
+    public function url(Twig_Environment $twig)
     {
         return $twig->render("{% set route =
             path(
