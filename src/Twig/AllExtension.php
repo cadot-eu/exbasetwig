@@ -57,7 +57,7 @@ class AllExtension extends AbstractExtension
             new TwigFunction('TBejsfirstHeader', [$this, 'ejsfirstHeader', ['is_safe' => ['html']]]),
             new TwigFunction('TBejsfirstText', [$this, 'ejsfirstText', ['is_safe' => ['html']]]),
             /* ----------------------------- other-fonctions ----------------------------- */
-            new TwigFunction('TBactions', [$this, 'actions', ['is_safe' => ['html']]])
+            new TwigFunction('TBactions', [$this, 'actions', ['needs_environment' => true]])
 
 
 
@@ -491,7 +491,7 @@ class AllExtension extends AbstractExtension
     /* -------------------------------------------------------------------------- */
     /*                               other functions                              */
     /* -------------------------------------------------------------------------- */
-    public function url(Twig_Environment $twig)
+    public function url(Twig_Environment $twig,)
     {
         return $twig->render("{% set route =
             path(
