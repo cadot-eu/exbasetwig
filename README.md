@@ -69,3 +69,4 @@ verify in bundles.php the line
 | twig function | parameters | description                            |
 | ------------- | ---------- | -------------------------------------- |
 | TBactions     |            | return actions for read action and url |
+
