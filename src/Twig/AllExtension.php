@@ -6,19 +6,11 @@ use DOMDocument;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 use Twig\Extension\AbstractExtension;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class AllExtension extends AbstractExtension
 {
-    private $roles, $container;
-    public function __construct(Security $security, ContainerInterface $container)
-    {
-        $this->container = $container;
-        if ($security->getUser() !== null)
-            $this->roles = ($security->getUser()->getRoles());
-    }
 
     public function getFunctions(): array
     {
@@ -194,8 +186,8 @@ class AllExtension extends AbstractExtension
     function TBgetFilename(string $file): string //example /app/public/uploads/fichier/toto-test-1232.doc.jpg
     {
         $info = pathinfo($file);
-        $filename = substr($info['filename'], 0, strrpos('-', $info['filename']));
-        return $filename . $info['extension'];
+        $filename = substr($info['filename'], 0, strrpos($info['filename'], '-'));
+        return $filename . '.' . $info['extension'];
     }
 
     public function max()
@@ -398,6 +390,7 @@ class AllExtension extends AbstractExtension
     /* -------------------------------------------------------------------------- */
     public function ejsrender($json, $quality = 'fullhd')
     {
+        $container = new ContainerInterface();
         //dump($json);
         $tabs = json_decode($json);
         //on liste les objets

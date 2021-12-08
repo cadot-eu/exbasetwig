@@ -1,8 +1,8 @@
 version: '3'
 services:
-  CMTwig:
+  cadot-info-twigbundle:
     image: cadotinfo/symfony5
-    container_name: CMTwig
+    container_name: cadot-info-twigbundle
     volumes:
       - .:/app
     networks:
