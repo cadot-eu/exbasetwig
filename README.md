@@ -70,3 +70,5 @@ verify in bundles.php the line
 | ------------- | ---------- | -------------------------------------- |
 | TBactions     |            | return actions for read action and url |
 
+## Tests
+` ./vendor/phpunit/phpunit/phpunit tests/functionTest.php `
