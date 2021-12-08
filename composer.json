@@ -3,8 +3,8 @@
   "description": "add tools Twig for Symfony 5",
   "type": "library",
   "require": {
-    "phpunit/phpunit": "^9.x.x",
-    "twig/twig": "3.x.x"
+    "phpunit/phpunit": "^9.0.0",
+    "twig/twig": "^3.0.0"
   },
   "homepage": "https://github.com/cadot-info/twigbundle#readme",
   "keywords": [
