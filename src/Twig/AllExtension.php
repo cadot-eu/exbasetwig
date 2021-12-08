@@ -51,6 +51,7 @@ class AllExtension extends AbstractExtension
             new TwigFunction('TBthumbnail', [$this, 'thumbnail'], ['is_safe' => ['html']]),
             new TwigFunction('TBgetico', [$this, 'getico', ['is_safe' => ['html']]]),
             new TwigFunction('TBuploadmax', [$this, 'max', ['is_safe' => ['html']]]),
+            new TwigFunction('TBgetFilename', [$this, 'TBgetFilename']),
             /* -------------------------- functions editeur ejs ------------------------- */
             new TwigFunction('TBejsrender', [$this, 'ejsrender', ['is_safe' => ['html']]]),
             new TwigFunction('TBejsfirstImage', [$this, 'ejsfirstImage', ['is_safe' => ['html']]]),
@@ -183,6 +184,20 @@ class AllExtension extends AbstractExtension
     /* -------------------------------------------------------------------------- */
     /*                            functions d'affichage                           */
     /* -------------------------------------------------------------------------- */
+
+    /**
+     * TBgetFilename return a filename without directory and uniqid
+     *
+     * @param  string $file
+     * @return string
+     */
+    function TBgetFilename(string $file): string //example /app/public/uploads/fichier/toto-test-1232.doc.jpg
+    {
+        $info = pathinfo($file);
+        $filename = substr($info['filename'], 0, strrpos('-', $info['filename']));
+        return $filename . $info['extension'];
+    }
+
     public function max()
     {
         $max_upload = (int)(ini_get('upload_max_filesize'));
