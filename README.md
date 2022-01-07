@@ -2,7 +2,7 @@
 
 install by composer
 
-`composer require cadot.info/twigbundle`
+`composer require cadot.eu/twigbundle`
 
 verify in bundles.php the line
 `Cadotinfo\TwigBundle\CadotinfoTwigBundle::class => ['all' => true]`

@@ -1,5 +1,5 @@
 {
-  "name": "cadot.info/twigbundle",
+  "name": "cadot.eu/twigbundle",
   "description": "add tools Twig for Symfony 5",
   "type": "library",
   "require": {
@@ -21,7 +21,7 @@
     "bundle",
     "service",
     "string",
-    "cadot.info"
+    "cadot.eu"
   ],
   "license": "mit",
   "autoload": {
@@ -31,8 +31,8 @@
   },
   "authors": [
     {
-      "name": "cadot.info",
-      "email": "composer@cadot.info"
+      "name": "cadot.eu",
+      "email": "composer@cadot.eu"
     }
   ],
   "minimum-stability": "dev"
