@@ -50,7 +50,7 @@ class AllExtension extends AbstractExtension
             new TwigFunction('TBejsfirstHeader', [$this, 'ejsfirstHeader', ['is_safe' => ['html']]]),
             new TwigFunction('TBejsfirstText', [$this, 'ejsfirstText', ['is_safe' => ['html']]]),
             /* ----------------------------- other-fonctions ----------------------------- */
-
+            new TwigFunction('TBjsondecode', [$this, 'jsondecode', ['is_safe' => ['html']]]),
 
 
         ];
@@ -498,4 +498,8 @@ class AllExtension extends AbstractExtension
     /* -------------------------------------------------------------------------- */
     /*                               other functions                              */
     /* -------------------------------------------------------------------------- */
+    function jsondecode($str)
+    {
+        return json_decode($str);
+    }
 }
