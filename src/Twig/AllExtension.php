@@ -498,8 +498,8 @@ class AllExtension extends AbstractExtension
     /* -------------------------------------------------------------------------- */
     /*                               other functions                              */
     /* -------------------------------------------------------------------------- */
-    function jsondecode($str)
+    function jsondecode($str, $arr = false)
     {
-        return json_decode($str);
+        return json_decode($str, $arr);
     }
 }
