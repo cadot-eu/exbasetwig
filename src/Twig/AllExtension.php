@@ -34,10 +34,6 @@ class AllExtension extends AbstractExtension
             new TwigFunction('TBdd', [$this, 'dd']),
             new TwigFunction('TBgetenv', [$this, 'getenv']),
             /* -------------------------- functions d'affichage ------------------------- */
-            new TwigFilter('TBsanitize', [$this, 'sanitize']),
-            new TwigFilter('TBobjetProperties', [$this, 'objetProperties']),
-            new TwigFilter('TBtxtfromhtml', [$this, 'txtfromhtml']),
-            new TwigFilter('TBJsonPretty', [$this, 'jsonpretty', ['is_safe' => ['html']]]),
             new TwigFunction('TBdatefr', [$this, 'datefr']),
             new TwigFunction('TBimg', [$this, 'img'], ['is_safe' => ['html']]),
             new TwigFunction('TBthumbnail', [$this, 'thumbnail'], ['is_safe' => ['html']]),
@@ -55,6 +51,16 @@ class AllExtension extends AbstractExtension
 
         ];
     }
+    public function getFilters()
+    {
+        return [
+            new TwigFilter('TBsanitize', [$this, 'sanitize']),
+            new TwigFilter('TBobjetProperties', [$this, 'objetProperties']),
+            new TwigFilter('TBtxtfromhtml', [$this, 'txtfromhtml']),
+            new TwigFilter('TBjsonpretty', [$this, 'jsonpretty', ['is_safe' => ['html']]]),
+        ];
+    }
+
     /* -------------------------------------------------------------------------- */
     /*                            function editeur tmce                           */
     /* -------------------------------------------------------------------------- */
@@ -218,6 +224,7 @@ class AllExtension extends AbstractExtension
     }
     public function jsonpretty($json)
     {
+        return json_decode($json);
         foreach (json_decode($json) as $key => $value) {
             $td = [];
             // if (\is_object($value)) $value = (array)$value;
