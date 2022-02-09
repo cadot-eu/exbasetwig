@@ -39,6 +39,7 @@ class AllExtension extends AbstractExtension
             new TwigFunction('TBthumbnail', [$this, 'thumbnail'], ['is_safe' => ['html']]),
             new TwigFunction('TBgetico', [$this, 'getico', ['is_safe' => ['html']]]),
             new TwigFunction('TBuploadmax', [$this, 'max', ['is_safe' => ['html']]]),
+            new TwigFunction('TBgetPublic', [$this, 'TBgetPublic']), // return a clean file for public access
             new TwigFunction('TBgetFilename', [$this, 'TBgetFilename']),
             /* -------------------------- functions editeur ejs ------------------------- */
             new TwigFunction('TBejsrender', [$this, 'ejsrender', ['is_safe' => ['html']]]),
@@ -196,6 +197,23 @@ class AllExtension extends AbstractExtension
             $filename = substr($info['filename'], 0, strrpos($info['filename'], '-'));
         else $filename = $info['filename'];
         return $filename . '.' . $info['extension'];
+    }
+
+
+    /**
+     * TBgetpublic return good url of a file public
+     *
+     * @param  mixed $string
+     * @return string
+     */
+    function TBgetPublic($string): string
+    {
+        //si on a public
+        $string = str_replace(['public/', '//'], ['', '/'], $string);
+        //si on est en relatif
+        if (substr($string, 0, 1) != '/')
+            $string = '/' . $string;
+        return $string;
     }
 
     public function max()
