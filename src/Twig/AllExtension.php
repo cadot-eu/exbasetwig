@@ -192,7 +192,9 @@ class AllExtension extends AbstractExtension
     function TBgetFilename(string $file): string //example /app/public/uploads/fichier/toto-test-1232.doc.jpg
     {
         $info = pathinfo($file);
-        $filename = substr($info['filename'], 0, strrpos($info['filename'], '-'));
+        if (strpos($info['filename'], '-'))
+            $filename = substr($info['filename'], 0, strrpos($info['filename'], '-'));
+        else $filename = $info['filename'];
         return $filename . '.' . $info['extension'];
     }
 
