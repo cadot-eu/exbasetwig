@@ -54,6 +54,7 @@ verify in bundles.php the line
 | TBthumbnail       | $image, $modal = true, $tooltip = '', $size = '', $class = '', $style = '' | retunr a tag imag with link and modal preview possibility |
 | TBgetico          | $file, $taille = 32                                                        | return a ico from file                                    |
 | TBuploadmax       |                                                                            | return the lowest file upload from php and server         |
+| TBimgToBase64     |$url,$inline=false                                                          | return a immage code in base64, inline option             |
 
 ## functions editeur ejs
 
