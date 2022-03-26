@@ -68,7 +68,8 @@ verify in bundles.php the line
 
 | twig function | parameters | description                            |
 | ------------- | ---------- | -------------------------------------- |
-| TBactions     |            | return actions for read action and url |
+| TBjsondecode  |            | return a array of json                 |
 
 ## Tests
+
 ` ./vendor/phpunit/phpunit/phpunit tests/functionTest.php `
