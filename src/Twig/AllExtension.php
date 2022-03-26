@@ -34,27 +34,35 @@ class AllExtension extends AbstractExtension
             new TwigFunction('TBdd', [$this, 'dd']),
             new TwigFunction('TBgetenv', [$this, 'getenv']),
             /* -------------------------- functions d'affichage ------------------------- */
-            new TwigFilter('TBsanitize', [$this, 'sanitize']),
-            new TwigFilter('TBobjetProperties', [$this, 'objetProperties']),
-            new TwigFilter('TBtxtfromhtml', [$this, 'txtfromhtml']),
-            new TwigFilter('TBJsonPretty', [$this, 'jsonpretty', ['is_safe' => ['html']]]),
             new TwigFunction('TBdatefr', [$this, 'datefr']),
             new TwigFunction('TBimg', [$this, 'img'], ['is_safe' => ['html']]),
             new TwigFunction('TBthumbnail', [$this, 'thumbnail'], ['is_safe' => ['html']]),
             new TwigFunction('TBgetico', [$this, 'getico', ['is_safe' => ['html']]]),
             new TwigFunction('TBuploadmax', [$this, 'max', ['is_safe' => ['html']]]),
+            new TwigFunction('TBgetPublic', [$this, 'TBgetPublic']), // return a clean file for public access
             new TwigFunction('TBgetFilename', [$this, 'TBgetFilename']),
+            new TwigFunction('TBimgToBase64', [$this, 'TBimgToBase64', ['is_safe' => ['html']]]),
             /* -------------------------- functions editeur ejs ------------------------- */
             new TwigFunction('TBejsrender', [$this, 'ejsrender', ['is_safe' => ['html']]]),
             new TwigFunction('TBejsfirstImage', [$this, 'ejsfirstImage', ['is_safe' => ['html']]]),
             new TwigFunction('TBejsfirstHeader', [$this, 'ejsfirstHeader', ['is_safe' => ['html']]]),
             new TwigFunction('TBejsfirstText', [$this, 'ejsfirstText', ['is_safe' => ['html']]]),
             /* ----------------------------- other-fonctions ----------------------------- */
-
+            new TwigFunction('TBjsondecode', [$this, 'jsondecode', ['is_safe' => ['html']]]),
 
 
         ];
     }
+    public function getFilters()
+    {
+        return [
+            new TwigFilter('TBsanitize', [$this, 'sanitize']),
+            new TwigFilter('TBobjetProperties', [$this, 'objetProperties']),
+            new TwigFilter('TBtxtfromhtml', [$this, 'txtfromhtml']),
+            new TwigFilter('TBjsonpretty', [$this, 'jsonpretty', ['is_safe' => ['html']]]),
+        ];
+    }
+
     /* -------------------------------------------------------------------------- */
     /*                            function editeur tmce                           */
     /* -------------------------------------------------------------------------- */
@@ -186,8 +194,27 @@ class AllExtension extends AbstractExtension
     function TBgetFilename(string $file): string //example /app/public/uploads/fichier/toto-test-1232.doc.jpg
     {
         $info = pathinfo($file);
-        $filename = substr($info['filename'], 0, strrpos($info['filename'], '-'));
+        if (strpos($info['filename'], '-'))
+            $filename = substr($info['filename'], 0, strrpos($info['filename'], '-'));
+        else $filename = $info['filename'];
         return $filename . '.' . $info['extension'];
+    }
+
+
+    /**
+     * TBgetpublic return good url of a file public
+     *
+     * @param  mixed $string
+     * @return string
+     */
+    function TBgetPublic($string): string
+    {
+        //si on a public
+        $string = str_replace(['public/', '//'], ['', '/'], $string);
+        //si on est en relatif
+        if (substr($string, 0, 1) != '/')
+            $string = '/' . $string;
+        return $string;
     }
 
     public function max()
@@ -218,6 +245,7 @@ class AllExtension extends AbstractExtension
     }
     public function jsonpretty($json)
     {
+        return json_decode($json);
         foreach (json_decode($json) as $key => $value) {
             $td = [];
             // if (\is_object($value)) $value = (array)$value;
@@ -385,6 +413,11 @@ class AllExtension extends AbstractExtension
         // $imageData = base64_encode(file_get_contents($adresse));
         // return 'data: ' . mime_content_type(getcwd() . $file) . ';base64,' . $imageData;
     }
+    function TBimgToBase64($url, $inline = false)
+    {
+        $binary = file_get_contents($url);
+        return $inline ? sprintf('data:image/%s;base64,%s', pathinfo($url, PATHINFO_EXTENSION), base64_encode($binary)) : base64_encode($binary);
+    }
     /* -------------------------------------------------------------------------- */
     /*                            functions editeur ejs                           */
     /* -------------------------------------------------------------------------- */
@@ -498,4 +531,8 @@ class AllExtension extends AbstractExtension
     /* -------------------------------------------------------------------------- */
     /*                               other functions                              */
     /* -------------------------------------------------------------------------- */
+    function jsondecode($str, $arr = false)
+    {
+        return json_decode($str, $arr);
+    }
 }
