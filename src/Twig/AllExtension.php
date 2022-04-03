@@ -51,6 +51,7 @@ class AllExtension extends AbstractExtension
             /* ----------------------------- other-fonctions ----------------------------- */
             new TwigFunction('TBjsondecode', [$this, 'jsondecode', ['is_safe' => ['html']]]),
             new TwigFunction('TBfaker', [$this, 'faker', ['is_safe' => ['html']]])
+            new TwigFunction('TBfakeren', [$this, 'fakeren', ['is_safe' => ['html']]])
 
 
         ];
@@ -540,7 +541,14 @@ class AllExtension extends AbstractExtension
 
     function faker($type = 'text', $options = null)
     {
-        $faker = Factory::create();
+        $faker = Factory::create('fr_FR');
+        if ($options)
+            return $faker->$type($options);
+        else return $faker->$type();
+    }
+    function fakeren($type = 'text', $options = null)
+    {
+        $faker = Factory::create('fr_FR');
         if ($options)
             return $faker->$type($options);
         else return $faker->$type();

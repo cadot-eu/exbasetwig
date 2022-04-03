@@ -72,6 +72,7 @@ verify in bundles.php the line
 | ------------- | ---------- | -------------------------------------- |
 | TBjsondecode  |            | return a array of json                 |
 | TBfaker | string for options | return faker, TBfaker('sentences',3) |
+| TBfakeren | string for options | return faker English |
 
 ## Tests
 
