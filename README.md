@@ -71,6 +71,7 @@ verify in bundles.php the line
 | twig function | parameters | description                            |
 | ------------- | ---------- | -------------------------------------- |
 | TBjsondecode  |            | return a array of json                 |
+| TBfaker | string for options | return faker, TBfaker('sentences',3) |
 
 ## Tests
 

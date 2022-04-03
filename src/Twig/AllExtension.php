@@ -8,6 +8,7 @@ use Twig\TwigFunction;
 use Twig\Extension\AbstractExtension;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Faker\Factory;
 
 class AllExtension extends AbstractExtension
 {
@@ -49,6 +50,7 @@ class AllExtension extends AbstractExtension
             new TwigFunction('TBejsfirstText', [$this, 'ejsfirstText', ['is_safe' => ['html']]]),
             /* ----------------------------- other-fonctions ----------------------------- */
             new TwigFunction('TBjsondecode', [$this, 'jsondecode', ['is_safe' => ['html']]]),
+            new TwigFunction('TBfaker', [$this, 'faker', ['is_safe' => ['html']]])
 
 
         ];
@@ -534,5 +536,13 @@ class AllExtension extends AbstractExtension
     function jsondecode($str, $arr = false)
     {
         return json_decode($str, $arr);
+    }
+
+    function faker($type = 'text', $options = null)
+    {
+        $faker = Factory::create();
+        if ($options)
+            return $faker->$type($options);
+        else return $faker->$type();
     }
 }
