@@ -50,7 +50,7 @@ class AllExtension extends AbstractExtension
             new TwigFunction('TBejsfirstText', [$this, 'ejsfirstText', ['is_safe' => ['html']]]),
             /* ----------------------------- other-fonctions ----------------------------- */
             new TwigFunction('TBjsondecode', [$this, 'jsondecode', ['is_safe' => ['html']]]),
-            new TwigFunction('TBfaker', [$this, 'faker', ['is_safe' => ['html']]])
+            new TwigFunction('TBfaker', [$this, 'faker', ['is_safe' => ['html']]]),
             new TwigFunction('TBfakeren', [$this, 'fakeren', ['is_safe' => ['html']]])
 
 
