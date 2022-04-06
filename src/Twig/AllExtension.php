@@ -1,6 +1,6 @@
 <?php
 
-namespace Cadotinfo\TwigBundle\Twig;
+namespace Cadoteu\TwigBundle\Twig;
 
 use DOMDocument;
 use Twig\TwigFilter;
