@@ -1,6 +1,6 @@
 <?php
 
-namespace Cadotinfo\TwigBundle\DependencyInjection;
+namespace Cadoteu\TwigBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

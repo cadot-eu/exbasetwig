@@ -6,7 +6,7 @@
     "phpunit/phpunit": "^9.0.0",
     "twig/twig": "^3.0.0"
   },
-  "homepage": "https://github.com/cadot-info/twigbundle#readme",
+  "homepage": "https://github.com/cadot-eu/twigbundle#readme",
   "keywords": [
     "symfony",
     "move",
@@ -26,7 +26,7 @@
   "license": "mit",
   "autoload": {
     "psr-4": {
-      "Cadotinfo\\TwigBundle\\": "src/"
+      "Cadoteu\\TwigBundle\\": "src/"
     }
   },
   "authors": [
