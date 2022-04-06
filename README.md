@@ -6,7 +6,7 @@ install by composer
 `composer require cadot.eu/twigbundle`
 
 verify in bundles.php the line
-`Cadotinfo\TwigBundle\CadotinfoTwigBundle::class => ['all' => true]`
+`Cadoteu\TwigBundle\CadoteuTwigBundle::class => ['all' => true]`
 
 ## functions editeur tmce
 
