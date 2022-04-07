@@ -51,7 +51,8 @@ class AllExtension extends AbstractExtension
             /* ----------------------------- other-fonctions ----------------------------- */
             new TwigFunction('TBjsondecode', [$this, 'jsondecode', ['is_safe' => ['html']]]),
             new TwigFunction('TBfaker', [$this, 'faker', ['is_safe' => ['html']]]),
-            new TwigFunction('TBfakeren', [$this, 'fakeren', ['is_safe' => ['html']]])
+            new TwigFunction('TBfakeren', [$this, 'fakeren', ['is_safe' => ['html']]]),
+            new TwigFunction('TBfakericon', [$this, 'fakericon', ['is_safe' => ['html']]])
 
 
         ];
@@ -552,5 +553,21 @@ class AllExtension extends AbstractExtension
         if ($options)
             return $faker->$type($options);
         else return $faker->$type();
+    }
+    /**
+     * Returns a random icon bootstrap from the list of icons
+     * 
+     * @param complet If set to false, the function will return a random icon from the list. If set to
+     * true, it will return the complete icon name.
+     * 
+     * @return An array of random icons.
+     */
+    function fakericon($complet = true)
+    {
+        $list = json_decode(file_get_contents('./gists/list.json'), true);
+        if ($complet == false)
+            return $list[array_rand($list)];
+        else
+            return 'bi bi-' . $list[array_rand($list)];
     }
 }
