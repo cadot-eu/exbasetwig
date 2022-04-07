@@ -564,7 +564,7 @@ class AllExtension extends AbstractExtension
      */
     function fakericon($complet = true)
     {
-        $list = json_decode(file_get_contents(__FILE__ . '/gists/list.json'), true);
+        $list = json_decode(file_get_contents(__DIR__ . '/gists/list.json'), true);
         if ($complet == false)
             return $list[array_rand($list)];
         else
