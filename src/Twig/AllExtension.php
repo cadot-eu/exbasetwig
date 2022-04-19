@@ -52,7 +52,8 @@ class AllExtension extends AbstractExtension
             new TwigFunction('TBjsondecode', [$this, 'jsondecode', ['is_safe' => ['html']]]),
             new TwigFunction('TBfaker', [$this, 'faker', ['is_safe' => ['html']]]),
             new TwigFunction('TBfakeren', [$this, 'fakeren', ['is_safe' => ['html']]]),
-            new TwigFunction('TBfakericon', [$this, 'fakericon', ['is_safe' => ['html']]])
+            new TwigFunction('TBfakericon', [$this, 'fakericon', ['is_safe' => ['html']]]),
+            new TwigFunction('TBgettype', [$this, 'gettype', ['is_safe' => ['html']]])
 
 
         ];
@@ -569,5 +570,11 @@ class AllExtension extends AbstractExtension
             return $list[array_rand($list)];
         else
             return 'bi bi-' . $list[array_rand($list)];
+    }
+
+    /* A function that returns the type of the variable. */
+    function gettype($objet)
+    {
+        return gettype($objet);
     }
 }
