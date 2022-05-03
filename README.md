@@ -1,5 +1,5 @@
 # Twig extensions
-
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cadot-eu_twigbundle&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cadot-eu_twigbundle)
 
 install by composer
 
