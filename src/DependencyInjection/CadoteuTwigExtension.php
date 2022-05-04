@@ -8,7 +8,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-class CadoteuTwigExtension extends Extension implements PrependExtensionInterface
+class CadoteuTwigExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
