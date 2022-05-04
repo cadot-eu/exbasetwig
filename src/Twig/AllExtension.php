@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Twig;
+namespace Cadoteu\TwigBundle\Twig;
 
 use App\Service\ToolsHelper;
 use DOMDocument;
