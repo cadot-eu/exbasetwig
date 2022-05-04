@@ -12,13 +12,9 @@ class CadoteuTwigExtension extends Extension implements PrependExtensionInterfac
 {
     public function load(array $configs, ContainerBuilder $container)
     {
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $loader->load('services.yaml');
+        // $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        // $loader->load('services.yaml');
         //charge config/packages/test.yaml par lib/Cadotinfo/tools-bundle/DependencyInjection/Configuration.php
         //$config = $this->processConfiguration(new Configuration(), $configs);
-    }
-
-    public function prepend(ContainerBuilder $container)
-    {
     }
 }
