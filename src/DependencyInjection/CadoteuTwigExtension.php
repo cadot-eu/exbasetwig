@@ -12,10 +12,15 @@ class CadoteuTwigExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
-        $containerBuilder = new ContainerBuilder();
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader->load('services.yaml');
         //charge config/packages/test.yaml par lib/Cadotinfo/tools-bundle/DependencyInjection/Configuration.php
         //$config = $this->processConfiguration(new Configuration(), $configs);
+    }
 
+
+    public function getAlias(): string
+    {
+        return 'twigBundle';
     }
 }
