@@ -16,8 +16,6 @@ class CadoteuTwigExtension extends Extension
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         //charge config/packages/test.yaml par lib/Cadotinfo/tools-bundle/DependencyInjection/Configuration.php
         //$config = $this->processConfiguration(new Configuration(), $configs);
-        // Apply our config schema to the given app's configs
-        $schema = new ConfigSchema();
-        $options = $this->processConfiguration($schema, $configs);
+
     }
 }
