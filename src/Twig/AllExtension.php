@@ -524,7 +524,7 @@ class AllExtension extends AbstractExtension
         return json_decode($str, $arr);
     }
 
-    static public function faker($type = 'text', $options = null)
+    public function faker($type = 'text', $options = null)
     {
         $faker = Factory::create('fr_FR');
         if ($options) {
@@ -534,7 +534,7 @@ class AllExtension extends AbstractExtension
         }
     }
 
-    static public function fakeren($type = 'text', $options = null)
+    public function fakeren($type = 'text', $options = null)
     {
         $faker = Factory::create('fr_FR');
         if ($options) {
@@ -552,7 +552,7 @@ class AllExtension extends AbstractExtension
      *
      * @return An array of random icons.
      */
-    static public function fakericon($complet = true)
+    public function fakericon($complet = true)
     {
         $list = json_decode(file_get_contents(__DIR__ . '../gists/list.json'), true);
         if ($complet == false) {
