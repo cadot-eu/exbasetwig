@@ -21,9 +21,4 @@ class CadoteuTwigExtension extends Extension implements PrependExtensionInterfac
     public function prepend(ContainerBuilder $container)
     {
     }
-
-    public function getAlias()
-    {
-        return 'twigBundle';
-    }
 }
