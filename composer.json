@@ -3,8 +3,8 @@
   "description": "add tools Twig for Symfony 5",
   "type": "library",
   "require": {
-    "phpunit/phpunit": "^9.0.0",
-    "twig/twig": "^3.0.0"
+    "phpunit/phpunit": "*",
+    "twig/twig": "*"
   },
   "homepage": "https://github.com/cadot-eu/twigbundle#readme",
   "keywords": [
@@ -35,5 +35,8 @@
       "email": "composer@cadot.eu"
     }
   ],
-  "minimum-stability": "dev"
+  "minimum-stability": "stable",
+  "require-dev": {
+    "symfony/var-dumper": "^6.0"
+  }
 }

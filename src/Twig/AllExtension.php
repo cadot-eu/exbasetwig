@@ -1,176 +1,95 @@
 <?php
 
-namespace Cadoteu\TwigBundle\Twig;
+namespace App\Twig;
 
+use App\Service\ToolsHelper;
 use DOMDocument;
-use Twig\TwigFilter;
-use Twig\TwigFunction;
-use Twig\Extension\AbstractExtension;
+use Faker\Factory;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Faker\Factory;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 class AllExtension extends AbstractExtension
 {
-
     public function getFunctions(): array
     {
         return [
-            /* ------------------------- functions editeur tmce ------------------------- */
-            new TwigFunction('TBtmcerender', [$this, 'tmcerender', ['is_safe' => ['html']]]),
-            new TwigFunction('TBtmcefirstImage', [$this, 'tmcefirstImage', ['is_safe' => ['html']]]),
-            new TwigFunction('TBtmcefirstHeader', [$this, 'tmcefirstHeader', ['is_safe' => ['html']]]),
-            new TwigFunction('TBtmcefirstText', [$this, 'tmcefirstText', ['is_safe' => ['html']]]),
-            /* ----------------------- ancien créateur de template ---------------------- */
-            new TwigFunction('TBformrow', [$this, 'formrow'], ['is_safe' => ['html']]),
-            new TwigFunction('TBformcol', [$this, 'formcol'], ['is_safe' => ['html']]),
-            new TwigFunction('TBformend', [$this, 'formend'], ['is_safe' => ['html']]),
-            /* ---------------- inplementation de functions du repository --------------- */
-            new TwigFunction('TBfindall', [$this, 'findall']),
-            new TwigFunction('TBfind', [$this, 'find']),
-            new TwigFunction('TBfindOneBy', [$this, 'findOneBy']),
-            new TwigFunction('TBfindBy', [$this, 'findBy']),
+
             /* --------------------- implementation de functions php -------------------- */
-            new TwigFunction('TBreorder', [$this, 'reorder']),
             new TwigFunction('TBdd', [$this, 'dd']),
             new TwigFunction('TBgetenv', [$this, 'getenv']),
             /* -------------------------- functions d'affichage ------------------------- */
             new TwigFunction('TBdatefr', [$this, 'datefr']),
-            new TwigFunction('TBimg', [$this, 'img'], ['is_safe' => ['html']]),
-            new TwigFunction('TBthumbnail', [$this, 'thumbnail'], ['is_safe' => ['html']]),
-            new TwigFunction('TBgetico', [$this, 'getico', ['is_safe' => ['html']]]),
-            new TwigFunction('TBuploadmax', [$this, 'max', ['is_safe' => ['html']]]),
+            new TwigFunction('TBuploadmax', [
+                $this, 'max', [
+                    'is_safe' => ['html'],
+
+                ],
+            ]),
             new TwigFunction('TBgetPublic', [$this, 'TBgetPublic']), // return a clean file for public access
             new TwigFunction('TBgetFilename', [$this, 'TBgetFilename']),
-            new TwigFunction('TBimgToBase64', [$this, 'TBimgToBase64', ['is_safe' => ['html']]]),
-            /* -------------------------- functions editeur ejs ------------------------- */
-            new TwigFunction('TBejsrender', [$this, 'ejsrender', ['is_safe' => ['html']]]),
-            new TwigFunction('TBejsfirstImage', [$this, 'ejsfirstImage', ['is_safe' => ['html']]]),
-            new TwigFunction('TBejsfirstHeader', [$this, 'ejsfirstHeader', ['is_safe' => ['html']]]),
-            new TwigFunction('TBejsfirstText', [$this, 'ejsfirstText', ['is_safe' => ['html']]]),
-            /* ----------------------------- other-fonctions ----------------------------- */
-            new TwigFunction('TBjsondecode', [$this, 'jsondecode', ['is_safe' => ['html']]]),
-            new TwigFunction('TBfaker', [$this, 'faker', ['is_safe' => ['html']]]),
-            new TwigFunction('TBfakeren', [$this, 'fakeren', ['is_safe' => ['html']]]),
-            new TwigFunction('TBfakericon', [$this, 'fakericon', ['is_safe' => ['html']]]),
-            new TwigFunction('TBgettype', [$this, 'gettype', ['is_safe' => ['html']]])
+            new TwigFunction('TBimgToBase64', [
+                $this, 'TBimgToBase64', [
+                    'is_safe' => ['html'],
 
+                ],
+            ]),
+            /* ----------------------------- other-fonctions ----------------------------- */
+            new TwigFunction('TBjsondecode', [
+                $this, 'jsondecode', [
+                    'is_safe' => ['html'],
+
+                ],
+            ]),
+            new TwigFunction('TBfaker', [
+                $this, 'faker', [
+                    'is_safe' => ['html'],
+
+                ],
+            ]),
+            new TwigFunction('TBfakeren', [
+                $this, 'fakeren', [
+                    'is_safe' => ['html'],
+
+                ],
+            ]),
+            new TwigFunction('TBfakericon', [
+                $this, 'fakericon', [
+                    'is_safe' => ['html'],
+
+                ],
+            ]),
 
         ];
     }
+
     public function getFilters()
     {
         return [
             new TwigFilter('TBsanitize', [$this, 'sanitize']),
             new TwigFilter('TBobjetProperties', [$this, 'objetProperties']),
             new TwigFilter('TBtxtfromhtml', [$this, 'txtfromhtml']),
-            new TwigFilter('TBjsonpretty', [$this, 'jsonpretty', ['is_safe' => ['html']]]),
+            new TwigFilter('TBjsonpretty', [
+                $this, 'jsonpretty', [
+                    'is_safe' => ['html'],
+
+                ],
+            ]),
+            /* -------------------------------- ckeditor -------------------------------- */
+            new TwigFilter('TBckclean', [
+                $this, 'ckclean', [
+                    'is_safe' => [
+                        'html',
+                    ],
+
+                ],
+            ]),
         ];
     }
 
-    /* -------------------------------------------------------------------------- */
-    /*                            function editeur tmce                           */
-    /* -------------------------------------------------------------------------- */
-    public function tmcerender($texte)
-    {
-        return $texte;
-        //ajout des finctionnalitées propre à mickcrud
-        //travaille sur les images en ajoutant un filtre liip
-    }
-    public function tmcefirstImage($texte)
-    {
-        $htmlDom = new DOMDocument;
-        @$htmlDom->loadHTML($texte);
-        $img = $htmlDom->getElementsByTagName('img')[0];
-        if ($this->roles != null or substr(html_entity_decode($value->data->caption), 0, 2) != '¤')
-            return $img->getAttribute('src');
-    }
-    public function tmcefirstHeader($json)
-    {
 
-        return 'à faire';
-    }
-    public function tmcefirstText($texte)
-    {
-        //dump($texte);
-        $pos = strpos($texte, '<!-- pagebreak -->');
-        if ($pos !== false)
-            return strip_tags(substr($texte, 0, $pos));
-        else
-            return strip_tags($texte);
-    }
-    /* -------------------------------------------------------------------------- */
-    /*                         ancien createur de template                        */
-    /* -------------------------------------------------------------------------- */
-    public function formrow()
-    {
-        return ('<div class="row">');
-    }
-    public function formend()
-    {
-        return ('</div>');
-    }
-
-    public function formcol($value)
-    {
-        return '<div class="col-' . $value . '">';
-    }
-
-    /* -------------------------------------------------------------------------- */
-    /*                  inplementation de functions du repository                 */
-    /* -------------------------------------------------------------------------- */
-    /**
-     * Method findall
-     *
-     * @param string $repository 
-     *
-     * @return array of entities
-     */
-    public function findall(string $repository)
-    {
-        return $this->em->getRepository("App:" . ucfirst($repository))->findall();
-    }
-    /**
-     * Method find
-     *
-     * @param string $repository 
-     * @param int $id 
-     *
-     * @return array of entities
-     */
-    public function find(string $repository, int $id)
-    {
-        return $this->em->getRepository("App:" . ucfirst($repository))->find($id);
-    }
-
-    /**
-     * Method findOneBy
-     *
-     * @param string $repository 
-     * @param array $criteria 
-     * @param array $orderBy 
-     *
-     * @return entitie
-     */
-    public function findOneBy(string $repository, array $criteria, array $orderBy = null)
-    {
-        return $this->em->getRepository("" . ucfirst($repository))->findOneBy($criteria,  $orderBy = null);
-    }
-    /**
-     * Method findBy
-     *
-     * @param string $repository 
-     * @param array $criteria 
-     * @param array $orderBy 
-     * @param int $limit  
-     * @param int $offset 
-     *
-     * @return array of entities
-     */
-    public function findBy(string $repository, array $criteria, array $orderBy = null, $limit = null, $offset = null)
-    {
-        return $this->em->getRepository("App:" . ucfirst($repository))->findBy($criteria,  $orderBy = null, $limit = null, $offset = null);
-    }
     /* -------------------------------------------------------------------------- */
     /*                       implementation de functions php                      */
     /* -------------------------------------------------------------------------- */
@@ -178,10 +97,12 @@ class AllExtension extends AbstractExtension
     {
         return $this->reorder($repository, $donnees);
     }
+
     public function dd($value)
     {
         dd($value);
     }
+
     public function getenv(string $var)
     {
         return $_ENV[$var];
@@ -192,68 +113,76 @@ class AllExtension extends AbstractExtension
 
     /**
      * TBgetFilename return a filename without directory and uniqid
-     *
-     * @param  string $file
-     * @return string
      */
-    function TBgetFilename(string $file): string //example /app/public/uploads/fichier/toto-test-1232.doc.jpg
+    public function TBgetFilename(string $file): string //example /app/public/uploads/fichier/toto-test-1232.doc.jpg
     {
         $info = pathinfo($file);
-        if (strpos($info['filename'], '-'))
+        if (strpos($info['filename'], '-')) {
             $filename = substr($info['filename'], 0, strrpos($info['filename'], '-'));
-        else $filename = $info['filename'];
+        } else {
+            $filename = $info['filename'];
+        }
         return $filename . '.' . $info['extension'];
     }
-
 
     /**
      * TBgetpublic return good url of a file public
      *
      * @param  mixed $string
-     * @return string
      */
-    function TBgetPublic($string): string
+    public function TBgetPublic($string): string
     {
         //si on a public
         $string = str_replace(['public/', '//'], ['', '/'], $string);
         //si on est en relatif
-        if (substr($string, 0, 1) != '/')
+        if (substr($string, 0, 1) != '/') {
             $string = '/' . $string;
+        }
         return $string;
     }
 
     public function max()
     {
-        $max_upload = (int)(ini_get('upload_max_filesize'));
-        $max_post = (int)(ini_get('post_max_size'));
-        $memory_limit = (int)(ini_get('memory_limit'));
+        $max_upload = (int) (ini_get('upload_max_filesize'));
+        $max_post = (int) (ini_get('post_max_size'));
+        $memory_limit = (int) (ini_get('memory_limit'));
         return (min($max_upload, $max_post, $memory_limit));
     }
+
     public function sanitize($value)
     {
         return $this->sanitize($value);
     }
+
     public function objetProperties($objets)
     {
         $response = [];
-        if (is_array($objets)) $objets = $objets[0];
-        foreach ((array)$objets as $key => $value) {
+        if (is_array($objets)) {
+            $objets = $objets[0];
+        }
+        foreach ((array) $objets as $key => $value) {
             $string = preg_replace('/[\x00]/u', '\\', $key);
             $clef = substr($string, strrpos($string, '\\') + 1);
             $response[] = $clef;
         }
         return $response;
     }
+
     public function txtfromhtml($str)
     {
         return strip_tags(html_entity_decode($str, ENT_QUOTES));
     }
+
+    /**
+     * It takes a JSON string and returns a pretty-printed HTML table
+     *
+     * @param json The JSON string to be formatted.
+     */
     public function jsonpretty($json)
     {
         return json_decode($json);
         foreach (json_decode($json) as $key => $value) {
             $td = [];
-            // if (\is_object($value)) $value = (array)$value;
             foreach ($value as $k => $v) {
                 $td[] = "<b>$k</b>: $v";
             }
@@ -262,30 +191,34 @@ class AllExtension extends AbstractExtension
 
         return implode('<br>', $tr);
     }
+
     //convertie une date anglaise en fr
     //de la forme datetime
     public function datefr($date, $format)
     {
-
-        $english_days = array(
-            'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
-        );
-        $french_days = array('lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche');
-        $english_months = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
-        $french_months = array('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre');
+        $english_days = [
+            'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday',
+        ];
+        $french_days = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
+        $english_months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        $french_months = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
         return str_replace($english_months, $french_months, str_replace($english_days, $french_days, date($format, strtotime($date))));
     }
+
     // renvoie directement une balise img avec son src avec plusieurs taille en fonction de la largeur d'écran
     // combiné avec liipimagine, supporte les class, les styles et le lazy
     public function img($image, $size = '', $class = '', $style = '', $tooltip = '')
     {
         $taille = '100%';
-        if (substr($size, 0, strlen('col')) == 'col')
+        if (substr($size, 0, strlen('col')) == 'col') {
             $taille = strval(intval(intval(substr($size, 3)) * 100 / 12)) . 'vw';
-        if (substr($size, -2) == 'vw')
+        }
+        if (substr($size, -2) == 'vw') {
             $taille = $size;
-        if (substr($size, -1) == '%')
+        }
+        if (substr($size, -1) == '%') {
             $taille = $size;
+        }
         $tab = explode('/', $image);
         $alt = str_replace('_', ' ', explode('.', end($tab))[0]);
         $alt = str_replace('-', "'", $alt);
@@ -302,6 +235,7 @@ class AllExtension extends AbstractExtension
         $return .= 'data-toggle="tooltip" data-placement="top" title="' . $tooltip . '"';
         return $return . ' />';
     }
+
     // renvoie une image en mini de 100px de large par défaut
     //modal permet de cliquer sur l'image pour avoir un apercu en grand
     // possibilité de donner des tailles par exemple:height:100px
@@ -309,8 +243,11 @@ class AllExtension extends AbstractExtension
     public function thumbnail($image, $modal = true, $tooltip = '', $size = '', $class = '', $style = '')
     {
         $return = '';
-        if ($size) $taille = $size;
-        else $taille = 'width:100px';
+        if ($size) {
+            $taille = $size;
+        } else {
+            $taille = 'width:100px';
+        }
         //détermination du alt
         $tab = explode('/', $image);
         $alt = str_replace('_', ' ', explode('.', end($tab))[0]);
@@ -343,7 +280,7 @@ class AllExtension extends AbstractExtension
                             "<a  data-toggle='popover-hover' style=\"cursor:zoom-in;\" data-img=\"" . $this->CacheManager->getBrowserPath($this->Package->getUrl($file), "grand") . "\">";
                     }
                     $return .= '
-             <img title="' . $tooltip . '" src="' .  $this->CacheManager->getBrowserPath($this->Package->getUrl($file), "mini") . '"
+             <img title="' . $tooltip . '" src="' . $this->CacheManager->getBrowserPath($this->Package->getUrl($file), "mini") . '"
              class="' . $class . '" style="' . $taille . ';' . $style . '" alt="' . ucfirst($alt) . '"';
 
                     if ($modal !== false) {
@@ -357,7 +294,9 @@ class AllExtension extends AbstractExtension
                     return "<img src='" . $this->getico($image) . "'>";
                     break;
             }
-        } else return 'image non trouvée';
+        } else {
+            return 'image non trouvée';
+        }
     }
 
     /**
@@ -365,11 +304,11 @@ class AllExtension extends AbstractExtension
      * si la taille est différente on met une taille à l'img
      *
      * @param   string  $file    fichier sur le disque
-     * @param   int=32  $taille  
+     * @param   int=32  $taille
      *
      * @return  string  img base64
      */
-    function getico($file, $taille = 32)
+    public function getico($file, $taille = 32)
     {
         //pour prendre directement en public
         if (!file_exists($file)) {
@@ -393,7 +332,7 @@ class AllExtension extends AbstractExtension
             // userspace coordinates
             $pattern = '/^(\d*\.\d+|\d+)(px)?$/'; // positive number, px unit optional
 
-            $interpretable =  preg_match($pattern, $svg->getAttribute('width'), $width) &&
+            $interpretable = preg_match($pattern, $svg->getAttribute('width'), $width) &&
                 preg_match($pattern, $svg->getAttribute('height'), $height);
 
             if ($interpretable) {
@@ -418,11 +357,46 @@ class AllExtension extends AbstractExtension
         // $imageData = base64_encode(file_get_contents($adresse));
         // return 'data: ' . mime_content_type(getcwd() . $file) . ';base64,' . $imageData;
     }
-    function TBimgToBase64($url, $inline = false)
+
+    public function TBimgToBase64($url, $inline = false)
     {
         $binary = file_get_contents($url);
         return $inline ? sprintf('data:image/%s;base64,%s', pathinfo($url, PATHINFO_EXTENSION), base64_encode($binary)) : base64_encode($binary);
     }
+    /* -------------------------------------------------------------------------- */
+    /*                            functions editeur ckeditor                      */
+    /* -------------------------------------------------------------------------- */
+
+    /**
+     * If the string is longer than the limit, break it at the last space before the limit and add the pad
+     *
+     * @param string The string to be trimmed.
+     * @param limit The maximum number of characters to return.
+     * @param break The character you want to break the string at.
+     * @param pad The string to append to the end of the truncated string.
+     *
+     * @return The first 500 characters of the string, or the first 500 characters before the first <div
+     * class="page-break"> tag.
+     */
+    public function ckintro($string, $limit = 500, $break = " ", $pad = "...")
+    {
+        if (strpos($string, '<div class="page-break"') !== false) {
+            return html_entity_decode(explode('<div class="page-break"', $string)[0]);
+        } else {
+            // return with no change if string is shorter than $limit
+            if (strlen($string) <= $limit) {
+                return $string;
+            }
+
+            $string = substr($string, 0, $limit);
+            if (false !== ($breakpoint = strrpos($string, $break))) {
+                $string = substr($string, 0, $breakpoint);
+            }
+
+            return html_entity_decode(strip_tags($string) . $pad);
+        }
+    }
+
     /* -------------------------------------------------------------------------- */
     /*                            functions editeur ejs                           */
     /* -------------------------------------------------------------------------- */
@@ -438,11 +412,15 @@ class AllExtension extends AbstractExtension
                 case 'paragraph':
                 case 'header':
                     $data = $tab->data->text;
-                    if (substr(html_entity_decode($data), 0, 2) == '¤') $tabs->blocks[$num]->data->text = substr($tab->data->text, 2);
+                    if (substr(html_entity_decode($data), 0, 2) == '¤') {
+                        $tabs->blocks[$num]->data->text = substr($tab->data->text, 2);
+                    }
                     break;
                 case 'image':
                     $data = $tab->data->caption;
-                    if (substr(html_entity_decode($data), 0, 2) == '¤') $tabs->blocks[$num]->data->caption = substr($tab->data->caption, 2);
+                    if (substr(html_entity_decode($data), 0, 2) == '¤') {
+                        $tabs->blocks[$num]->data->caption = substr($tab->data->caption, 2);
+                    }
                     $width = getimagesize(getcwd() . $tab->data->url)[0];
                     //limit width
                     if ($width > 1920) {
@@ -453,62 +431,67 @@ class AllExtension extends AbstractExtension
                     break;
             }
             //si pas le droit de voir on supprime
-            if (strpos($data, '¤') !== false)
-                if (substr(html_entity_decode($data), 0, 2) == '¤' and $this->roles == null)
+            if (strpos($data, '¤') !== false) {
+                if (substr(html_entity_decode($data), 0, 2) == '¤' and $this->roles == null) {
                     unset($tabs->blocks[$num]);
+                }
+            }
         }
 
         $json = json_encode($tabs);
         $html = null;
-        if ($tabs->blocks)
+        if ($tabs->blocks) {
             $html = new \Twig\Markup(Parser::parse($json)->toHtml(), 'UTF-8');
+        }
         //ajout des finctionnalitées propre à mickcrud
         //travaille sur les images en ajoutant un filtre liip
         return $html;
     }
+
     public function ejsfirstImage($json)
     {
-
         $tab = json_decode($json)->blocks;
         foreach ($tab as $key => $value) {
             if ($value->type == 'image') {
-                if ($this->roles != null or substr(html_entity_decode($value->data->caption), 0, 2) != '¤')
+                if ($this->roles != null or substr(html_entity_decode($value->data->caption), 0, 2) != '¤') {
                     return $value->data->url;
+                }
             }
         }
         //return $html;
     }
+
     public function ejsfirstHeader($json)
     {
         $tab = json_decode($json)->blocks;
         foreach ($tab as $key => $value) {
-            if ($value->type == 'header')
-                if ($this->roles != null or substr(html_entity_decode($value->data->text), 0, 2) != '¤')
+            if ($value->type == 'header') {
+                if ($this->roles != null or substr(html_entity_decode($value->data->text), 0, 2) != '¤') {
                     return strip_tags(str_replace('¤', '', $value->data->text));
+                }
+            }
         }
         //return $html;
     }
+
     public function ejsfirstText($json)
     {
         $tab = json_decode($json)->blocks;
         foreach ($tab as $key => $value) {
-            if ($value->type == 'paragraph')
-                if ($this->roles != null or substr(html_entity_decode($value->data->text), 0, 2) != '¤')
+            if ($value->type == 'paragraph') {
+                if ($this->roles != null or substr(html_entity_decode($value->data->text), 0, 2) != '¤') {
                     return strip_tags(str_replace('¤', '', $value->data->text));
+                }
+            }
         }
     }
-
-
-
-
-
 
     /* -------------------------------------------------------------------------- */
     /*                               sous-founctions                              */
     /* -------------------------------------------------------------------------- */
     //pour le svg
     //nettoie le svg pour pouvoir le convertir en base64
-    function unescape($str)
+    public function unescape($str)
     {
         $ret = '';
         $len = strlen($str);
@@ -536,45 +519,46 @@ class AllExtension extends AbstractExtension
     /* -------------------------------------------------------------------------- */
     /*                               other functions                              */
     /* -------------------------------------------------------------------------- */
-    function jsondecode($str, $arr = false)
+    public function jsondecode($str, $arr = false)
     {
         return json_decode($str, $arr);
     }
 
-    function faker($type = 'text', $options = null)
+    static public function faker($type = 'text', $options = null)
     {
         $faker = Factory::create('fr_FR');
-        if ($options)
+        if ($options) {
             return $faker->$type($options);
-        else return $faker->$type();
-    }
-    function fakeren($type = 'text', $options = null)
-    {
-        $faker = Factory::create('fr_FR');
-        if ($options)
-            return $faker->$type($options);
-        else return $faker->$type();
-    }
-    /**
-     * Returns a random icon bootstrap from the list of icons
-     * 
-     * @param complet If set to false, the function will return a random icon from the list. If set to
-     * true, it will return the complete icon name.
-     * 
-     * @return An array of random icons.
-     */
-    function fakericon($complet = true)
-    {
-        $list = json_decode(file_get_contents(__DIR__ . '../gists/list.json'), true);
-        if ($complet == false)
-            return $list[array_rand($list)];
-        else
-            return 'bi bi-' . $list[array_rand($list)];
+        } else {
+            return $faker->$type();
+        }
     }
 
-    /* A function that returns the type of the variable. */
-    function gettype($objet)
+    static public function fakeren($type = 'text', $options = null)
     {
-        return gettype($objet);
+        $faker = Factory::create('fr_FR');
+        if ($options) {
+            return $faker->$type($options);
+        } else {
+            return $faker->$type();
+        }
+    }
+
+    /**
+     * Returns a random icon bootstrap from the list of icons
+     *
+     * @param complet If set to false, the function will return a random icon from the list. If set to
+     * true, it will return the complete icon name.
+     *
+     * @return An array of random icons.
+     */
+    static public function fakericon($complet = true)
+    {
+        $list = json_decode(file_get_contents(__DIR__ . '../gists/list.json'), true);
+        if ($complet == false) {
+            return $list[array_rand($list)];
+        } else {
+            return 'bi bi-' . $list[array_rand($list)];
+        }
     }
 }
